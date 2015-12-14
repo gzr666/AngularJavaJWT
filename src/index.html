@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+	<meta charset ="utf-8"/>
+    <!-- CSS (load bootstrap) -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style>
+        .navbar { border-radius:0; }
+    </style>
+    <link rel="stylesheet" href="css/mystyle.css"/> 
+    <link rel="stylesheet" href="css/formstyle.css"/> 
+
+    <!-- JS (load angular, ui-router, and our custom js file) -->
+    
+</head>
+
+<!-- apply our angular app to our site -->
+<body ng-app="routerApp">
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-inverse navbar-static-top" >
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="{active:$root.linker==0}"><a ui-sref="home">Home</a></li>
+            <li ng-class="{active:$root.linker==1}"><a ui-sref="about">About</a></li>
+            <li ng-class="{active:$root.linker==2}"><a ui-sref="map">Location</a></li>
+            
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown">
+              
+                <a href="" class="dropdown-toggle"
+                data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User Account <strong class="caret"></strong ></a>
+
+                <ul class="dropdown-menu">
+
+                  <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                  <li><a href="" ng-click="logMeOff()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+                  
+                </ul>
+
+            </li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<!-- MAIN CONTENT -->
+<div class="container" id="moveouts">
+
+    <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+    <div class="{{pageClass}}" ui-view></div>
+
+    
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
+    <script src="app/app.js"></script>
+    <script src="controllers/AboutController.js"></script>
+    <script src="controllers/BookListController.js"></script>
+    <script src="controllers/HomeController.js"></script>
+     <script src="controllers/MapController.js"></script>
+     <script src="controllers/LoginController.js"></script>
+     <script src="services/authService.js"></script>
+      <script src="services/booksService.js"></script>
+     <script src="js/gmaps.js"></script>
+
+
+     <script>
+     $(document).ready(function(){
+
+     new GMaps({
+       div: '#map',
+       lat: -12.043333,
+       lng: -77.028333
+     });
+
+
+     });
+
+     $("#myform").submit(function(e){
+    e.preventDefault();
+  });
+
+
+
+             
+
+          </script>
+</body>
+</html>
